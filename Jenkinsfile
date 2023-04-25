@@ -1,15 +1,8 @@
-def remote = [:]
-    remote.name = 'Docker-server'
-    remote.host = '3.9.19.211'
-    remote.user = 'ubuntu'
-    remote.password = 'password12345'
-    remote.allowAnyHosts = true
-
 pipeline {
     agent any
     environment {
         VERSION = "${env.BUILD_ID}"
-        AWS_ACCOUNT_ID="316019785232"
+        AWS_ACCOUNT_ID="112843911832"
         AWS_DEFAULT_REGION="eu-west-2"
         IMAGE_REPO_NAME="docker-repo"
         IMAGE_TAG= "${env.BUILD_ID}"
@@ -56,14 +49,14 @@ pipeline {
                              }
                          }
                      }
-        stage('Deploy to Docker-Server Via SSH') {
+        /*stage('Deploy to Docker-Server Via SSH') {
           steps{
       sshCommand remote: remote, command: "ls -lrt"
       sshCommand remote: remote, command: """aws ecr --profile docker-user get-login-password --region us-east-2 | docker login --username AWS --password-stdin 011138670495.dkr.ecr.us-east-2.amazonaws.com"""
       sshCommand remote: remote, command: "docker pull 011138670495.dkr.ecr.us-east-2.amazonaws.com/docker-class:4"
       sshCommand remote: remote, command: "docker run -d -p 9090:80 --name webapp 011138670495.dkr.ecr.us-east-2.amazonaws.com/docker-class:4"
       }
-      }  
+      }*/  
 
 
     }
