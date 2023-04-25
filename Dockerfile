@@ -10,8 +10,11 @@ RUN yum update -y && \
 # change directory
 RUN cd /var/www/html
 
-# download webfiles
+
 RUN wget https://github.com/aguoko/webpagefiles/archive/refs/heads/main.zip
+
+# download webfiles
+#RUN wget https://github.com/aguoko/webpagefiles/archive/refs/heads/main.zip
 
 # unzip folder
 RUN unzip main.zip
