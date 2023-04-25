@@ -7,7 +7,6 @@ pipeline {
         IMAGE_REPO_NAME="docker-repo"
         IMAGE_TAG= "${env.BUILD_ID}"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-        
     }
     stages {
           
@@ -21,7 +20,6 @@ pipeline {
                        script{
              
                          sh """aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"""
-                         
                 }
                  
             }
@@ -51,14 +49,14 @@ pipeline {
                              }
                          }
                      }
-        /*stage('Deploy to Docker-Server Via SSH') {
+        stage('Deploy to Docker-Server Via SSH') {
           steps{
       sshCommand remote: remote, command: "ls -lrt"
       sshCommand remote: remote, command: """aws ecr --profile docker-user get-login-password --region us-east-2 | docker login --username AWS --password-stdin 011138670495.dkr.ecr.us-east-2.amazonaws.com"""
       sshCommand remote: remote, command: "docker pull 011138670495.dkr.ecr.us-east-2.amazonaws.com/docker-class:4"
       sshCommand remote: remote, command: "docker run -d -p 9090:80 --name webapp 011138670495.dkr.ecr.us-east-2.amazonaws.com/docker-class:4"
       }
-      }*/
+      }  
 
 
     }
