@@ -7,7 +7,8 @@ pipeline {
         IMAGE_REPO_NAME="docker-class"
         IMAGE_TAG= "${env.BUILD_ID}"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-    }
+      }
+  
     stages {
           
           stage('Logging into AWS ECR') {
@@ -48,7 +49,7 @@ pipeline {
                     sh """docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"""
                              }
                          }
-      //                }
+                     }
       //   stage('Deploy to Docker-Server Via SSH') {
       //     steps{
       // sshCommand remote: remote, command: "ls -lrt"
