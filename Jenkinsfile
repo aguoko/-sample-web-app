@@ -1,3 +1,11 @@
+def remote = [:]
+    remote.name = 'Docker'
+    remote.host = '13.40.84.226'
+    remote.user = 'ubuntu'
+    remote.password = 'Muna@11'
+    remote.allowAnyHosts = true
+
+
 pipeline {
     agent any
     environment {
@@ -49,14 +57,14 @@ pipeline {
         }
       
  }
-      //   stage('Deploy to Decker-SErver Via SSH') {
-      //     steps{
-      // sshCommand remote: remote, command: "ls -lrt"
-      // sshCommand remote: remote, command: "aws --profile dec-user ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 111393898725.dkr.ecr.us-east-1.amazonaws.com"
-      // sshCommand remote: remote, command: "docker pull 111393898725.dkr.ecr.us-east-1.amazonaws.com/dec2-webapp:9"
-      // sshCommand remote: remote, command: "docker run -d -p 80:80 --name webapp 111393898725.dkr.ecr.us-east-1.amazonaws.com/dec2-webapp:9"
-      // }
-      // }  
+        stage('Deploy to Decker-Server Via SSH') {
+          steps{
+      sshCommand remote: remote, command: "ls -lrt"
+      sshCommand remote: remote, command: "aws --profile docker-user ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 268320248602.dkr.ecr.eu-west-2.amazonaws.com"
+      sshCommand remote: remote, command: "268320248602.dkr.ecr.eu-west-2.amazonaws.com/docker-class:13"
+      sshCommand remote: remote, command: "docker run -d -p 9090:80 --name webapp 268320248602.dkr.ecr.eu-west-2.amazonaws.com/docker-class:13"
+      }
+      }  
 
 
     }
